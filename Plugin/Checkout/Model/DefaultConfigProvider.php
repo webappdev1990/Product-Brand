@@ -1,0 +1,40 @@
+<?php
+/**
+ * WebAppDev
+ * @package WebAppDev_ProductBrand
+ * @author WebAppDev <https://github.com/webappdev1990/>
+ */
+namespace WebAppDev\ProductBrand\Plugin\Checkout\Model;
+
+use Magento\Checkout\Model\Session as CheckoutSession;
+
+class DefaultConfigProvider
+{
+    /**
+     * @var CheckoutSession
+     */
+    protected $checkoutSession;
+
+    /**
+     * Constructor
+     *
+     * @param CheckoutSession $checkoutSession
+     */
+    public function __construct(
+        CheckoutSession $checkoutSession
+    ) {
+        $this->checkoutSession = $checkoutSession;
+    }
+
+    public function afterGetConfig(
+        \Magento\Checkout\Model\DefaultConfigProvider $subject,
+        array $result
+    ) {
+        $items = $result['totalsData']['items'];
+        foreach ($items as $index => $item) {
+            $quoteItem = $this->checkoutSession->getQuote()->getItemById($item['item_id']);
+            $result['quoteItemData'][$index]['manufacturer'] = $quoteItem->getProduct()->getAttributeText('manufacturer');
+        }
+        return $result;
+    }
+}

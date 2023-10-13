@@ -1,0 +1,17 @@
+<?php
+/**
+ * WebAppDev
+ * @package WebAppDev_ProductBrand
+ * @author WebAppDev <https://github.com/webappdev1990/>
+ */
+?>
+<?php $_product = $block->getProduct();
+    $entity_id = $_product->getId();
+    $load = \Magento\Framework\App\ObjectManager::getInstance();
+    $product = $load->create('Magento\Catalog\Model\Product')->load($entity_id);
+    $manufacture = $product->getAttributeText('manufacturer');
+if ($manufacture != '') {?>
+                <div class="product-brand">
+                    <b><?php echo $manufacture;?></b>
+                </div>
+<?php }?>

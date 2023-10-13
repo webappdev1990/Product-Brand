@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * WebAppDev
+ * @package WebAppDev_ProductBrand
+ * @author WebAppDev <https://github.com/webappdev1990/>
+ */
+-->
+<page layout="1column" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+         <css src="WebAppDev_ProductBrand::css/custom.css" />
+    </head>
+    <body>
+        <referenceContainer name="content">
+            <block class="Magento\Catalog\Block\Product\View" name="product.info.options.productname" as="productname" template="WebAppDev_ProductBrand::product/view/options/productname.phtml" before='-'/>
+        </referenceContainer>
+    </body>
+</page>
